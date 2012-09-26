@@ -117,14 +117,18 @@ $(function(){
 
   initialize: function() {
     console.log("Admin view instantiated");
-    this.input    = this.$("#new-post");
+    // this.input    = this.$("#new-post");
+    // console.log(this.input);
     Posts.on('all',   this.render, this);
     Posts.fetch();
   },
 
   createOnSubmit: function (){
     console.log("createOnSubmit");
-    Posts.create();
+    var title = $('#title').val();
+    var text = $('#text').val();
+    console.log(title+' '+text);
+    Posts.create({title: title, text: text});
   }
 
   });
