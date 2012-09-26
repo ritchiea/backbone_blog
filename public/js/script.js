@@ -4,11 +4,11 @@ $(function(){
 
   // backbone router
 
-  var AdminRouter = Backbone.Router.extend({
+  window.AdminRouter = Backbone.Router.extend({
   routes: { "admin/posts/:id": "route" },
 
   route: function(id) {
-    var item = PostArchive.get(id);
+    var item = PostLibrary.get(id);
     var view = new AdminView({ model: item });
 
     something.html( view.render().el );
@@ -33,12 +33,20 @@ $(function(){
       };
     },
 
+    // events: {
+    //   "submit":  "createPost"
+    // },
+
     initialize: function(){
         console.log("Post model has been instantiated");
         this.on("change:text", function(){
             var text = this.get("text");
             console.log('Post text updated');
         });
+    },
+
+    createPost: function( form_submit ){
+        console.log("submit triggered")
     },
 
     changeText: function( post_text ){
@@ -55,7 +63,7 @@ $(function(){
 
   // blogposts collection
 
-  var PostLibrary = Backbone.Collection.extend({
+  window.PostLibrary = Backbone.Collection.extend({
 
   model: Post,
   url: 'admin/api/posts',
@@ -74,7 +82,7 @@ $(function(){
 
   });
 
-  var Posts = new PostLibrary;
+  window.Posts = new PostLibrary;
 
   // views
 

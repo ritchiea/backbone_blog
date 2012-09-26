@@ -22,6 +22,19 @@ get '/admin/api/:thing/:id' do
   from_bson_id(DB.collection(params[:thing]).find_one(to_bson_id(params[:id]))).to_json
 end
 
+post '/admin/api/:thing' do
+  oid = DB.collection(params[:thing]).insert(JSON.parse(request.body.read.to_s))
+  "{\"_id\": \"#{oid.to_s}\"}"
+end
+
+delete '/admin/api/:thing/:id' do
+  DB.collection(params[:thing]).remove('_id' => to_bson_id(params[:id]))
+end
+
+put '/admin/api/:thing/:id' do
+  DB.collection(params[:thing]).update({'_id' => to_bson_id(params[:id])}, {'$set' => JSON.parse(request.body.read.to_s).reject{|k,v| k == '_id'}})
+end
+
 def to_bson_id(id) 
   BSON::ObjectId.from_string(id) 
 end

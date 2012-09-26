@@ -5,7 +5,13 @@
     %h1
       Blog Posts
       %div.content
-        %div#post-library
+        %div#new-post
+          %form{ :action => "", :method => "post"}
+            %fieldset
+              %input#new-post{"placeholder" => "What's on your mind?", "type" => "text", :name => "title"}/
+              %input#new-post{"placeholder" => "Text goes here", "type" => "text", :name => "text"}/
+              %input{:type => "submit", :value => "Save", :class => "button"}
+
 
 / Templates
 
