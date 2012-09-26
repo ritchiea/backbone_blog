@@ -112,6 +112,7 @@ $(function(){
   el: $("#admin"),
 
   initialize: function() {
+    console.log("Admin view instantiated");
     Posts.on('all',   this.render, this);
     Posts.fetch();
   }

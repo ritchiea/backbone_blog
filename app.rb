@@ -11,6 +11,7 @@ end
 
 get '/admin' do
   # cms
+  haml :admin, :attr_wrapper => '"', :locals => {:title => 'Backbone.js Blog CMS by Andrew Ritchie'}
 end
 
 get '/admin/api/:thing' do

@@ -1,0 +1,14 @@
+/ admin panel interface
+
+%div#admin
+  %div.title
+    %h1
+      Blog Posts
+      %div.content
+        %div#post-library
+
+/ Templates
+
+%script#post-template{"type" => "text/template"}
+  <div class="post <%= published ? 'published' : '' %>">
+  %div.post-text 
