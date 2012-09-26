@@ -4,8 +4,8 @@ $(function(){
 
   // backbone router
 
-  var BlogRouter = Backbone.Router.extend({
-  routes: { "posts/:id": "route" },
+  var AdminRouter = Backbone.Router.extend({
+  routes: { "admin/posts/:id": "route" },
 
   route: function(id) {
     var item = PostArchive.get(id);
@@ -20,6 +20,8 @@ $(function(){
 
   window.Post = Backbone.Model.extend({
     idAttribute: "_id",
+
+    // TODO: add validations
 
     defaults: function() {
       return {
@@ -39,8 +41,8 @@ $(function(){
         });
     },
 
-    changeText: function( posttext ){
-        this.set({ text: posttext });
+    changeText: function( post_text ){
+        this.set({ text: post_text });
     },
 
     // Toggle the 'published' state of this todo item.
@@ -72,27 +74,17 @@ $(function(){
   // views
 
   var PostView = Backbone.View.extend({
+    el: $('#post'),
 
-    // templating function
-    template: _.template($('#post-template').html()),
+    render: function( event ){
+        var compiled_template = _.template( $("#post-template").html() );
+        this.$el.html( compiled_template(this.model.toJSON()) );
+        return this; //recommended as this enables calls to be chained.
+    },
 
     // The DOM events specific to an item.
     events: {
-      "click publish" : "togglePublished"
-    },
-
-    // listen for changes to posts model
-
-    initialize: function() {
-      _.bindAll(this, 'render');
-      this.model.on('change', this.render);
-      this.model.on('destroy', this.remove);
-    },
-
-    // Re-render the post
-    render: function() {
-      this.$el.html(this.template(this.model.toJSON()));
-      return this;
+      "click #publish" : "togglePublished"
     },
 
     // Toggle the "published" state of the model.
@@ -102,7 +94,7 @@ $(function(){
 
   });
 
-  // My blog App
+  // My CMS App
   // top level piece of UI
 
   window.AdminView = Backbone.View.extend({
