@@ -17,6 +17,10 @@ get '/admin' do
   # cms
 end
 
+post '/admin' do
+  # save post
+end
+
 get '/api/:thing' do
   DB.collection(params[:thing]).find.to_a.map{|t| from_bson_id(t)}.to_json
 end
