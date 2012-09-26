@@ -33,20 +33,12 @@ $(function(){
       };
     },
 
-    // events: {
-    //   "submit":  "createPost"
-    // },
-
     initialize: function(){
         console.log("Post model has been instantiated");
         this.on("change:text", function(){
             var text = this.get("text");
             console.log('Post text updated');
         });
-    },
-
-    createPost: function( form_submit ){
-        console.log("submit triggered")
     },
 
     changeText: function( post_text ){
@@ -119,10 +111,20 @@ $(function(){
 
   el: $("#admin"),
 
+  events: {
+      "click #save-post":  "createOnSubmit"
+    },
+
   initialize: function() {
     console.log("Admin view instantiated");
+    this.input    = this.$("#new-post");
     Posts.on('all',   this.render, this);
     Posts.fetch();
+  },
+
+  createOnSubmit: function (){
+    console.log("createOnSubmit");
+    Posts.create();
   }
 
   });
