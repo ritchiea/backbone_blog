@@ -9,23 +9,15 @@ get '/' do
   # homepage
 end
 
-get '/posts/:id' do
-  # single post
-end
-
 get '/admin' do
   # cms
 end
 
-post '/admin' do
-  # save post
-end
-
-get '/api/:thing' do
+get '/admin/api/:thing' do
   DB.collection(params[:thing]).find.to_a.map{|t| from_bson_id(t)}.to_json
 end
 
-get '/api/:thing/:id' do
+get '/admin/api/:thing/:id' do
   from_bson_id(DB.collection(params[:thing]).find_one(to_bson_id(params[:id]))).to_json
 end
 
