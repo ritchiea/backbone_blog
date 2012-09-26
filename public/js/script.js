@@ -37,7 +37,7 @@ $(function(){
         console.log("this model has been instantiated");
         this.on("change:text", function(){
             var text = this.get("text");
-            console.log('Text source updated');
+            console.log('Post text updated');
         });
     },
 
@@ -55,7 +55,7 @@ $(function(){
 
   // blogposts collection
 
-  var PostArchive = Backbone.Collection.extend({
+  var PostLibrary = Backbone.Collection.extend({
 
   model: Post,
   url: 'admin/api/posts',
@@ -65,16 +65,26 @@ $(function(){
   nextOrder: function() {
     if (!this.length) return 1;
     return this.last().get('order') + 1;
+    },
+
+  comparator: function(post) {
+      return post.get('order');
     }
+
 
   });
 
-  var Posts = new PostArchive;
+  var Posts = new PostLibrary;
 
   // views
 
   var PostView = Backbone.View.extend({
     el: $('#post'),
+
+    initialize: function() {
+      this.model.bind('change', this.render, this);
+      this.model.bind('destroy', this.remove, this);
+    },
 
     render: function( event ){
         var compiled_template = _.template( $("#post-template").html() );
@@ -111,6 +121,6 @@ $(function(){
 
   // create the app
 
-  window.App = new BlogView;
+  window.App = new AdminView;
 
 }); // app end
