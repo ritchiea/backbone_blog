@@ -34,7 +34,7 @@ $(function(){
     },
 
     initialize: function(){
-        console.log("this model has been instantiated");
+        console.log("Post model has been instantiated");
         this.on("change:text", function(){
             var text = this.get("text");
             console.log('Post text updated');
@@ -104,7 +104,7 @@ $(function(){
 
   });
 
-  // My CMS App
+  // My Backbone CMS App
   // top level piece of UI
 
   window.AdminView = Backbone.View.extend({
