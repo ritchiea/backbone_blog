@@ -3,7 +3,7 @@ require 'sinatra'
 require 'mongo'
 require 'json'
 
-DB = Mongo::Connection.new.db("mydb", :pool_size => 5, :timeout => 5)
+DB = Mongo::Connection.new.db("blogdb", :pool_size => 5, :timeout => 5)
 
 get '/' do
   # homepage

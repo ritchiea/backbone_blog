@@ -129,6 +129,8 @@ $(function(){
     var text = $('#text').val();
     console.log(title+' '+text);
     Posts.create({title: title, text: text});
+    $('#title').val('');
+    $('#text').val('');
   }
 
   });
