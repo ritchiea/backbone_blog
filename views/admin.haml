@@ -17,7 +17,7 @@
 / Templates
 
 %script#post-template{"type" => "text/template"}
-  <div class="post"><%= title %></div>
+  <div class="post"><%= title %> <a class="edit" href="">edit</a></div>
 %script#library-template{"type" => "text/template"}
   <ol class="posts">
   <% _.each(posts, function(post) { %>

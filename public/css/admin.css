@@ -1,0 +1,13 @@
+body {
+  background: #e8e7e7;
+  margin: 16px; }
+
+#admin {
+  font-family: helvetica;
+  color: #666666; }
+  #admin h1 {
+    font-size: 36px;
+    color: #333333; }
+  #admin h2 {
+    font-size: 24px;
+    color: #333333; }
