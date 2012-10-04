@@ -4,15 +4,23 @@
   %div.title
     %h1
       Blog Posts
-      %div.content
-        %div#new-post
-          %input#title{"placeholder" => "What's on your mind?", "type" => "text", :name => "title"}/
-          %input#text{"placeholder" => "Text goes here", "type" => "text", :name => "text"}/
-          %input#save-post{:type => "button", :value => "Save"}
+    #old-posts
+    %div.content
+      %h1
+        New Post
+      %div#new-post
+        %input#title{"placeholder" => "What's on your mind?", "type" => "text", :name => "title"}/
+        %input#text{"placeholder" => "Text goes here", "type" => "text", :name => "text"}/
+        %input#save-post{:type => "button", :value => "Save"}
 
 
 / Templates
 
 %script#post-template{"type" => "text/template"}
-  <div class="post <%= published ? 'published' : '' %>">
-  %div.post-text 
+  <div class="post"><%= title %></div>
+%script#library-template{"type" => "text/template"}
+  <ol class="posts">
+  <% _.each(posts, function(post) { %>
+  <li><%= post.title %></li>
+  <% }); %>
+  </ol>

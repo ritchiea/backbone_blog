@@ -35,10 +35,10 @@ $(function(){
 
     initialize: function(){
         console.log("Post model has been instantiated");
-        this.on("change:text", function(){
-            var text = this.get("text");
-            console.log('Post text updated');
-        });
+        // this.on("change:text", function(){
+        //     var text = this.get("text");
+        //     console.log('Post text updated');
+        // });
     },
 
     changeText: function( post_text ){
@@ -78,17 +78,20 @@ $(function(){
 
   // views
 
-  var PostView = Backbone.View.extend({
-    el: $('#post'),
+  window.PostView = Backbone.View.extend({
+
+    // el: $('#post'),
 
     initialize: function() {
+      this.template = _.template($('#post-template').html());
       this.model.bind('change', this.render, this);
       this.model.bind('destroy', this.remove, this);
     },
 
     render: function( event ){
-        var compiled_template = _.template( $("#post-template").html() );
-        this.$el.html( compiled_template(this.model.toJSON()) );
+        var renderedContent = this.template(this.model.toJSON() );
+        $(this.el).html(renderedContent);
+
         return this; //recommended as this enables calls to be chained.
     },
 
@@ -104,8 +107,36 @@ $(function(){
 
   });
 
+
+  // old posts that appear as titles on the top level ui
+
+  window.ArchivePostView = Backbone.View.extend({
+
+
+
+  });
+
+
+  // window.LibraryView = Backbone.View.extend({
+  //   template: _.template($("#library-template").html()),
+  //   tag: 'li',
+  //   className: 'library',
+
+  //   initialize: function() {
+  //               _.bindAll(this, 'render');
+  //           },
+
+  //   render: function() {
+  //     $(this.el).html(this.template(this.model);
+  //     return this;
+  //     }
+
+  // });
+
+  // *********************
   // My Backbone CMS App
   // top level piece of UI
+  // *********************
 
   window.AdminView = Backbone.View.extend({
 
@@ -124,13 +155,16 @@ $(function(){
   },
 
   createOnSubmit: function (){
-    console.log("createOnSubmit");
-    var title = $('#title').val();
-    var text = $('#text').val();
+    
+    $title = this.$('#title');
+    $text = this.$('#text');
+
+    var title = $title.val();
+    var text = $text.val();
     console.log(title+' '+text);
     Posts.create({title: title, text: text});
-    $('#title').val('');
-    $('#text').val('');
+    $title.val('');
+    $text.val('');
   }
 
   });
