@@ -51,6 +51,7 @@ $(function(){
     // Toggle the 'published' state of this todo item.
     toggle: function() {
       this.set({published: !this.get("published")});
+      return this;
     }
 
 
@@ -94,7 +95,7 @@ $(function(){
     },
 
     render: function( event ){
-        var renderedContent = this.template(this.model.toJSON() );
+        var renderedContent = this.template( this.model.toJSON() );
         $(this.el).html(renderedContent);
 
         return this; //recommended as this enables calls to be chained.
@@ -108,6 +109,7 @@ $(function(){
     // Toggle the "published" state of the model.
     togglePublished: function() {
       this.model.toggle();
+      return this;
     }
 
   });

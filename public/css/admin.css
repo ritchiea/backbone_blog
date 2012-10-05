@@ -22,3 +22,5 @@ body {
     margin-bottom: 16px; }
   #admin #save-post {
     margin-left: 16px; }
+  #admin #unpublish {
+    color: red; }
