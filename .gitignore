@@ -11,6 +11,10 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
+.sass-cache
+example.rb
+hello_world.rb
+.DS_Store
 
 # YARD artifacts
 .yardoc
