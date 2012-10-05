@@ -122,7 +122,6 @@ $(function(){
   window.LibraryPostView = PostView.extend({
 
 
-
   });
 
 
@@ -170,6 +169,7 @@ $(function(){
     libraryView = new LibraryView({collection: library});
     $('#post-library').append(libraryView.render().el);
     library.fetch();
+    // this needs to be refactored so the db hit happens on pageload
   },
 
   createOnSubmit: function (){
@@ -182,7 +182,7 @@ $(function(){
     library.create({title: title, text: text});
     $title.val('');
     $text.val('');
-    library.fetch();
+    library.fetch(); // I think this should be event triggered...
   }
 
   });
