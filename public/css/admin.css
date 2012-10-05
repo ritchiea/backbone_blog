@@ -1,11 +1,6 @@
 body {
   background: #e8e7e7;
   margin: 16px; }
-  body input #text {
-    width: 200px;
-    height: 500px; }
-  body input #title {
-    width: 200px; }
 
 #admin {
   font-family: helvetica;
@@ -16,3 +11,14 @@ body {
   #admin h2 {
     font-size: 24px;
     color: #333333; }
+  #admin #text {
+    width: 400px;
+    height: 500px;
+    margin-left: 16px;
+    margin-bottom: 16px; }
+  #admin #title {
+    width: 400px;
+    margin-left: 16px;
+    margin-bottom: 16px; }
+  #admin #save-post {
+    margin-left: 16px; }
