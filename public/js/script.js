@@ -52,6 +52,7 @@ $(function(){
     toggle: function() {
       this.set({published: !this.get("published")});
       return this;
+      // this does not trigger a put request and update db
     }
 
 
@@ -103,8 +104,8 @@ $(function(){
 
     // The DOM events specific to an item.
     events: {
-      "click #publish" : "togglePublished",
-      "click #unpublish" : "togglePublished"
+      "click .publish" : "togglePublished",
+      "click .unpublish" : "togglePublished"
     },
 
     // Toggle the "published" state of the model.
