@@ -34,7 +34,6 @@ $(function(){
     },
 
     initialize: function(){
-        console.log("Post model has been instantiated");
         // this.on("change:text", function(){
         //     var text = this.get("text");
         //     console.log('Post text updated');
@@ -80,7 +79,8 @@ $(function(){
 
   window.PostView = Backbone.View.extend({
 
-    // el: $('#post'),
+    tagName: 'li',
+    className: 'post',
 
     initialize: function() {
       this.template = _.template($('#post-template').html());
@@ -147,9 +147,6 @@ $(function(){
     },
 
   initialize: function() {
-    console.log("Admin view instantiated");
-    // this.input    = this.$("#new-post");
-    // console.log(this.input);
     Posts.on('all',   this.render, this);
     Posts.fetch();
   },

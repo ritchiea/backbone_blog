@@ -3,7 +3,7 @@
 %div#admin
   %div.title
     %h1
-      Blog Posts
+      Posts
     #old-posts
     %div.content
       %h2
@@ -19,7 +19,7 @@
 / Templates
 
 %script#post-template{"type" => "text/template"}
-  <div class="post"><%= title %> <a class="edit" href="">edit</a></div>
+  <p class="post"><%= title %> <a class="edit" href="">edit</a></p>
 %script#library-template{"type" => "text/template"}
   <ol class="posts">
   <% _.each(posts, function(post) { %>
