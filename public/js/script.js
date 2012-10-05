@@ -4,16 +4,16 @@ $(function(){
 
   // backbone router
 
-  window.AdminRouter = Backbone.Router.extend({
-  routes: { "admin/posts/:id": "route" },
+  // window.AdminRouter = Backbone.Router.extend({
+  // routes: { "admin/posts/:id": "route" },
 
-  route: function(id) {
-    var item = PostLibrary.get(id);
-    var view = new AdminView({ model: item });
+  // route: function(id) {
+  //   var item = PostLibrary.get(id);
+  //   var view = new AdminView({ model: item });
 
-    something.html( view.render().el );
-  }
-  });
+  //   something.html( view.render().el );
+  // }
+  // });
 
   // posts model
   // posts should have text, a title, an author & a boolean published status
@@ -29,7 +29,7 @@ $(function(){
         title: "New Post",
         text: "Hello world",
         published:  false,
-        order: Posts.nextOrder()
+        // order: Posts.nextOrder()
       };
     },
 
@@ -59,7 +59,7 @@ $(function(){
 
   // blogposts collection
 
-  window.PostLibrary = Backbone.Collection.extend({
+  window.Posts = Backbone.Collection.extend({
 
   model: Post,
   url: 'admin/api/posts',
@@ -78,7 +78,7 @@ $(function(){
 
   });
 
-  window.Posts = new PostLibrary;
+  // window.Posts = new PostLibrary;
 
   // views
 
@@ -117,29 +117,41 @@ $(function(){
 
 
   // old posts that appear as titles on the top level ui
+  // LibraryPostView extends PostView because it will hold all posts
 
-  window.ArchivePostView = Backbone.View.extend({
+  window.LibraryPostView = PostView.extend({
 
 
 
   });
 
 
-  // window.LibraryView = Backbone.View.extend({
-  //   template: _.template($("#library-template").html()),
-  //   tag: 'li',
-  //   className: 'library',
+  window.LibraryView = Backbone.View.extend({
+    tag: 'section',
+    className: 'library',
 
-  //   initialize: function() {
-  //               _.bindAll(this, 'render');
-  //           },
+    initialize: function() {
+                _.bindAll(this, 'render');
+                this.template = _.template($('#library-template').html());
+                this.collection.bind('reset', this.render);
+            },
 
-  //   render: function() {
-  //     $(this.el).html(this.template(this.model);
-  //     return this;
-  //     }
+    render: function() {
+      var $posts,
+          collection = this.collection;
+      $(this.el).html(this.template({}));
+      $posts = this.$('.posts');
+      collection.each(function(post) {
+        var view = new LibraryPostView({
+          model: post,
+          collection: collection
+        });
+        $posts.append(view.render().el);
+      });
+      return this;
+      }
 
-  // });
+  });
 
   // *********************
   // My Backbone CMS App
@@ -155,8 +167,8 @@ $(function(){
     },
 
   initialize: function() {
-    Posts.on('all',   this.render, this);
-    Posts.fetch();
+    // Posts.on('all',   this.render, this);
+    // Posts.fetch();
   },
 
   createOnSubmit: function (){

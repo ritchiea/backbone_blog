@@ -2,8 +2,6 @@
 
 %div#admin
   %div.title
-    %h1
-      Posts
     #old-posts
     %div.new-post-input
       %h2
@@ -21,8 +19,6 @@
 %script#post-template{"type" => "text/template"}
   <p class="post"><%= title %> <span class="edit">edit</span> <span class="<%= published ? 'publish' : 'unpublish' %>"><%= published ? 'publish' : 'unpublish' %></span></p>
 %script#library-template{"type" => "text/template"}
-  <ol class="posts">
-  <% _.each(posts, function(post) { %>
-  <li><%= post.title %></li>
-  <% }); %>
-  </ol>
+  %h1
+    Posts
+  %ul.posts
