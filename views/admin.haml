@@ -5,13 +5,13 @@
     %h1
       Posts
     #old-posts
-    %div.content
+    %div.new-post-input
       %h2
         New Post
       %div#new-post
         %input#title{"placeholder" => "What's on your mind?", "type" => "text", :name => "title"}/
         %br/
-        %input#text{"type" => "text", :name => "text"}/
+        %textarea#text{"placeholder" => "Post body here"}
         %br/
         %input#save-post{:type => "button", :value => "Save"}
 
@@ -19,7 +19,7 @@
 / Templates
 
 %script#post-template{"type" => "text/template"}
-  <p class="post"><%= title %> <span id="edit">edit</span> <span id="<%= published ? 'publish' : 'unpublish' %>"><%= published ? 'publish' : 'unpublish' %></span></p>
+  <p class="post"><%= title %> <span class="edit">edit</span> <span class="<%= published ? 'publish' : 'unpublish' %>"><%= published ? 'publish' : 'unpublish' %></span></p>
 %script#library-template{"type" => "text/template"}
   <ol class="posts">
   <% _.each(posts, function(post) { %>

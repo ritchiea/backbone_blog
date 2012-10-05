@@ -13,7 +13,7 @@ body {
     color: #333333; }
   #admin #text {
     width: 400px;
-    height: 500px;
+    height: 350px;
     margin-left: 16px;
     margin-bottom: 16px; }
   #admin #title {
@@ -22,18 +22,18 @@ body {
     margin-bottom: 16px; }
   #admin #save-post {
     margin-left: 16px; }
-  #admin #edit {
+  #admin .edit {
     color: #333333; }
-    #admin #edit:hover {
+    #admin .edit:hover {
       text-decoration: underline;
       cursor: pointer; }
-  #admin #unpublish {
+  #admin .unpublish {
     color: red; }
-    #admin #unpublish:hover {
+    #admin .unpublish:hover {
       text-decoration: underline;
       cursor: pointer; }
-  #admin #publish {
+  #admin .publish {
     color: red; }
-    #admin #publish:hover {
+    #admin .publish:hover {
       text-decoration: underline;
       cursor: pointer; }
