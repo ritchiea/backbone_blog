@@ -173,15 +173,12 @@ $(function(){
   },
 
   createOnSubmit: function (){
-    
-    console.log("createOnSubmit fired")
 
     $title = this.$('#title');
     $text = this.$('#text');
 
     var title = $title.val();
     var text = $text.val();
-    console.log(title+' '+text);
     library.create({title: title, text: text});
     $title.val('');
     $text.val('');
