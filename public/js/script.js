@@ -44,6 +44,10 @@ $(function(){
         this.set({ text: post_text });
     },
 
+    isPublished: function(){
+      return this.get("published") == true;
+    },
+
     // Toggle the 'published' state of this todo item.
     toggle: function() {
       this.set({published: !this.get("published")});
@@ -83,9 +87,10 @@ $(function(){
     className: 'post',
 
     initialize: function() {
-      this.template = _.template($('#post-template').html());
+      _.bindAll(this, 'render');
       this.model.bind('change', this.render, this);
       this.model.bind('destroy', this.remove, this);
+      this.template = _.template($('#post-template').html());
     },
 
     render: function( event ){
