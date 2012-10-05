@@ -22,5 +22,18 @@ body {
     margin-bottom: 16px; }
   #admin #save-post {
     margin-left: 16px; }
+  #admin #edit {
+    color: #333333; }
+    #admin #edit:hover {
+      text-decoration: underline;
+      cursor: pointer; }
   #admin #unpublish {
     color: red; }
+    #admin #unpublish:hover {
+      text-decoration: underline;
+      cursor: pointer; }
+  #admin #publish {
+    color: red; }
+    #admin #publish:hover {
+      text-decoration: underline;
+      cursor: pointer; }

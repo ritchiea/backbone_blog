@@ -103,7 +103,8 @@ $(function(){
 
     // The DOM events specific to an item.
     events: {
-      "click #publish" : "togglePublished"
+      "click #publish" : "togglePublished",
+      "click #unpublish" : "togglePublished"
     },
 
     // Toggle the "published" state of the model.
