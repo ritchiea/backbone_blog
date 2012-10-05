@@ -22,6 +22,8 @@ body {
     margin-bottom: 16px; }
   #admin #save-post {
     margin-left: 16px; }
+  #admin .post-title {
+    font-style: italic; }
   #admin .edit {
     color: #333333; }
     #admin .edit:hover {

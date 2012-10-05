@@ -2,7 +2,7 @@
 
 %div#admin
   %div.title
-    #old-posts
+    #post-library
     %div.new-post-input
       %h2
         New Post
@@ -17,7 +17,7 @@
 / Templates
 
 %script#post-template{"type" => "text/template"}
-  <p class="post"><%= title %> <span class="edit">edit</span> <span class="<%= published ? 'publish' : 'unpublish' %>"><%= published ? 'publish' : 'unpublish' %></span></p>
+  <p class="post"><span class="post-title"><%= title %></span> <span class="edit">edit</span> <span class="<%= published ? 'publish' : 'unpublish' %>"><%= published ? 'publish' : 'unpublish' %></span></p>
 %script#library-template{"type" => "text/template"}
   %h1
     Posts

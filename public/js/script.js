@@ -29,7 +29,7 @@ $(function(){
         title: "New Post",
         text: "Hello world",
         published:  false,
-        // order: Posts.nextOrder()
+        order: library.nextOrder()
       };
     },
 
@@ -78,7 +78,7 @@ $(function(){
 
   });
 
-  // window.Posts = new PostLibrary;
+  window.library = new Posts();
 
   // views
 
@@ -167,21 +167,25 @@ $(function(){
     },
 
   initialize: function() {
-    // Posts.on('all',   this.render, this);
-    // Posts.fetch();
+    libraryView = new LibraryView({collection: library});
+    $('#post-library').append(libraryView.render().el);
+    library.fetch();
   },
 
   createOnSubmit: function (){
     
+    console.log("createOnSubmit fired")
+
     $title = this.$('#title');
     $text = this.$('#text');
 
     var title = $title.val();
     var text = $text.val();
     console.log(title+' '+text);
-    Posts.create({title: title, text: text});
+    library.create({title: title, text: text});
     $title.val('');
     $text.val('');
+    library.fetch();
   }
 
   });
