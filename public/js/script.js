@@ -41,9 +41,8 @@ $(function(){
     },
 
     initialize: function(){
-        // this.on("change:text", function(){
-        //     var text = this.get("text");
-        //     console.log('Post text updated');
+        // this.on("change:published", function(){
+            
         // });
     },
 
@@ -58,8 +57,8 @@ $(function(){
     // Toggle the 'published' state of this todo item.
     toggle: function() {
       this.set({published: !this.get("published")});
+      this.save();
       return this;
-      // this does not trigger a put request and update db
     }
 
 
