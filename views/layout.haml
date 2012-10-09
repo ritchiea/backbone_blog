@@ -21,4 +21,11 @@
 
   %script{'src' => 'js/libs/underscore-min.js'}
   %script{'src' => 'js/libs/backbone-min.js'}
-  %script{'defer' => true, 'src' => 'js/script.js'}
+  %script{'src' => 'js/script.js'}
+  :javascript
+    $(function(){
+    if (window.location.pathname === "/admin")
+    { 
+    window.library.fetch(); 
+    }
+    });

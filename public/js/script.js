@@ -4,16 +4,23 @@ $(function(){
 
   // backbone router
 
-  // window.AdminRouter = Backbone.Router.extend({
-  // routes: { "admin/posts/:id": "route" },
+  window.AdminRouter = Backbone.Router.extend({
+    routes: {
+      '' : 'home'
+    },
 
-  // route: function(id) {
-  //   var item = PostLibrary.get(id);
-  //   var view = new AdminView({ model: item });
+    initialize: function(){
+      adminView = new AdminView();
+      libraryView = new LibraryView({collection: library});
+    },
 
-  //   something.html( view.render().el );
-  // }
-  // });
+    home: function(){
+      var $postLibrary = $('#post-library');
+      $postLibrary.empty();
+      $postLibrary.append(libraryView.render().el);
+    }
+
+  });
 
   // posts model
   // posts should have text, a title, an author & a boolean published status
@@ -125,6 +132,7 @@ $(function(){
 
   });
 
+  // the view below handles collections of posts
 
   window.LibraryView = Backbone.View.extend({
     tag: 'section',
@@ -167,10 +175,7 @@ $(function(){
     },
 
   initialize: function() {
-    libraryView = new LibraryView({collection: library});
-    $('#post-library').append(libraryView.render().el);
-    library.fetch();
-    // this needs to be refactored so the db hit happens on pageload
+    // stuff to come here
   },
 
   createOnSubmit: function (){
@@ -191,6 +196,7 @@ $(function(){
 
   // create the app
 
-  window.App = new AdminView;
+  window.App = new AdminRouter();
+  Backbone.history.start({pushState: true});
 
 }); // app end
