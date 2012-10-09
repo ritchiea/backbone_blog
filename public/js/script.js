@@ -197,6 +197,6 @@ $(function(){
   // create the app
 
   window.App = new AdminRouter();
-  Backbone.history.start({pushState: true});
+  Backbone.history.start({pushState: true, root: '/admin'});
 
 }); // app end
