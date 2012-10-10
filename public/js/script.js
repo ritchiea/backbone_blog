@@ -211,16 +211,15 @@ $(function(){
 
     // this would be better if instread of create it was create or save
 
-    $title = this.$('#title');
-    $text = this.$('#text');
-    $post_id = this.$('#post-id');
-
-    var title = $title.val();
-    var text = $text.val();
+    var $title = this.$('#title'),
+      $text = this.$('#text'),
+      $post_id = this.$('#post-id'),
+      title = $title.val(),
+      text = $text.val();
 
     if ($post_id.val().length != 0)  {   // id exists
-      var id = $post_id.val();
-      var post = library.get(id);
+      var id = $post_id.val(),
+        post = library.get(id);
       post.save({title: title, text: text});
     }
 
