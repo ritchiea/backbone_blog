@@ -176,7 +176,7 @@ $(function(){
   });
 
   // *********************
-  // My Backbone CMS App
+  //     Backbone CMS
   // top level piece of UI
   // *********************
 
