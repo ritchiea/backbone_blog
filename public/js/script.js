@@ -213,24 +213,24 @@ $(function(){
 
     $title = this.$('#title');
     $text = this.$('#text');
-    $post-id = this.$('#post-id');
+    $post_id = this.$('#post-id');
 
     var title = $title.val();
     var text = $text.val();
 
-    if ($post-id.val().length != 0)  {   // id exists
-      var id = $post-id.val();
+    if ($post_id.val().length != 0)  {   // id exists
+      var id = $post_id.val();
       var post = library.get(id);
       post.save({title: title, text: text});
     }
 
     else {
-        library.create({title: title, text: text});
-        }
+      library.create({title: title, text: text});
+    }
 
     $title.val('');
     $text.val('');
-    $post-id.val('');
+    $post_id.val('');
 
     library.fetch(); // I think this should be event triggered...
   }
