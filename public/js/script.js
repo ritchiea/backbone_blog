@@ -194,8 +194,6 @@ $(function(){
 
   createOnSubmit: function (){
 
-    // this would be better if instread of create it was create or save
-
     var $title = this.$('#title'),
       $text = this.$('#text'),
       title = $title.val(),
@@ -208,8 +206,6 @@ $(function(){
   },
 
   findOrCreateOnSubmit: function (){
-
-    // this would be better if instread of create it was create or save
 
     var $title = this.$('#title'),
       $text = this.$('#text'),
