@@ -112,7 +112,8 @@ $(function(){
     events: {
       "click .publish" : "togglePublished",
       "click .unpublish" : "togglePublished",
-      "click .delete"    : "deletePost"
+      "click .delete"    : "deletePost",
+      "click .edit" : "editPost"
     },
 
     // Toggle the "published" state of the model.
@@ -123,6 +124,13 @@ $(function(){
 
     deletePost: function() {
       this.model.destroy();
+    },
+
+    editPost: function() {
+      var title = this.model.get('title');
+      var text = this.model.get('text');
+      window.$('#title').val(title);
+      window.$('#text').val(text);
     }
 
   });
