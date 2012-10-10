@@ -35,7 +35,7 @@ body {
       text-decoration: underline;
       cursor: pointer; }
   #admin .publish {
-    color: red; }
+    color: blue; }
     #admin .publish:hover {
       text-decoration: underline;
       cursor: pointer; }
