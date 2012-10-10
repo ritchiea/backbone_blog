@@ -129,8 +129,10 @@ $(function(){
     editPost: function() {
       var title = this.model.get('title');
       var text = this.model.get('text');
+      var id = this.model.get('_id')
       window.$('#title').val(title);
       window.$('#text').val(text);
+      window.$('#post-id').val(id);
     }
 
   });
@@ -183,7 +185,7 @@ $(function(){
   el: $("#admin"),
 
   events: {
-      "click #save-post":  "createOnSubmit"
+      "click #save-post":  "findOrCreateOnSubmit"
     },
 
   initialize: function() {
@@ -202,6 +204,34 @@ $(function(){
     library.create({title: title, text: text});
     $title.val('');
     $text.val('');
+    library.fetch(); // I think this should be event triggered...
+  },
+
+  findOrCreateOnSubmit: function (){
+
+    // this would be better if instread of create it was create or save
+
+    $title = this.$('#title');
+    $text = this.$('#text');
+    $post-id = this.$('#post-id');
+
+    var title = $title.val();
+    var text = $text.val();
+
+    if ($post-id.val().length != 0)  {   // id exists
+      var id = $post-id.val();
+      var post = library.get(id);
+      post.save({title: title, text: text});
+    }
+
+    else {
+        library.create({title: title, text: text});
+        }
+
+    $title.val('');
+    $text.val('');
+    $post-id.val('');
+
     library.fetch(); // I think this should be event triggered...
   }
 
