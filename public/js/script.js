@@ -127,9 +127,9 @@ $(function(){
     },
 
     editPost: function() {
-      var title = this.model.get('title');
-      var text = this.model.get('text');
-      var id = this.model.get('_id')
+      var title = this.model.get('title'),
+        text = this.model.get('text'),
+        id = this.model.get('_id');
       window.$('#title').val(title);
       window.$('#text').val(text);
       window.$('#post-id').val(id);
@@ -196,11 +196,11 @@ $(function(){
 
     // this would be better if instread of create it was create or save
 
-    $title = this.$('#title');
-    $text = this.$('#text');
+    var $title = this.$('#title'),
+      $text = this.$('#text'),
+      title = $title.val(),
+      text = $text.val();
 
-    var title = $title.val();
-    var text = $text.val();
     library.create({title: title, text: text});
     $title.val('');
     $text.val('');
