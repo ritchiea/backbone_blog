@@ -39,3 +39,8 @@ body {
     #admin .publish:hover {
       text-decoration: underline;
       cursor: pointer; }
+  #admin .delete {
+    color: red; }
+    #admin .delete:hover {
+      text-decoration: underline;
+      cursor: pointer; }

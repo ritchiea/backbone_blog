@@ -111,13 +111,18 @@ $(function(){
     // The DOM events specific to an item.
     events: {
       "click .publish" : "togglePublished",
-      "click .unpublish" : "togglePublished"
+      "click .unpublish" : "togglePublished",
+      "click .delete"    : "deletePost"
     },
 
     // Toggle the "published" state of the model.
     togglePublished: function() {
       this.model.toggle();
       return this;
+    },
+
+    deletePost: function() {
+      this.model.destroy();
     }
 
   });
@@ -178,6 +183,8 @@ $(function(){
   },
 
   createOnSubmit: function (){
+
+    // this would be better if instread of create it was create or save
 
     $title = this.$('#title');
     $text = this.$('#text');
