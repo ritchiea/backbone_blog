@@ -3,7 +3,6 @@
 $(function(){
 
   // backbone router
-  // first vim write
 
   window.AdminRouter = Backbone.Router.extend({
     routes: {
