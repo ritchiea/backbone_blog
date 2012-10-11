@@ -185,7 +185,7 @@ $(function(){
   el: $("#admin"),
 
   events: {
-      "click #save-post":  "findOrCreateOnSubmit"
+      "click #save-post":  "setOrCreateOnSubmit"
     },
 
   initialize: function() {
@@ -205,7 +205,7 @@ $(function(){
     library.fetch(); // I think this should be event triggered...
   },
 
-  findOrCreateOnSubmit: function (){
+  setOrCreateOnSubmit: function (){
 
     var $title = this.$('#title'),
       $text = this.$('#text'),
