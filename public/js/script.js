@@ -192,19 +192,6 @@ $(function(){
     // stuff to come here
   },
 
-  createOnSubmit: function (){
-
-    var $title = this.$('#title'),
-      $text = this.$('#text'),
-      title = $title.val(),
-      text = $text.val();
-
-    library.create({title: title, text: text});
-    $title.val('');
-    $text.val('');
-    library.fetch(); // I think this should be event triggered...
-  },
-
   setOrCreateOnSubmit: function (){
 
     var $title = this.$('#title'),
