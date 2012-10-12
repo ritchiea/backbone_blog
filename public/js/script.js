@@ -42,7 +42,6 @@ $(function(){
 
     initialize: function(){
         // this.on("change:published", function(){
-            
         // });
     },
 
@@ -54,7 +53,7 @@ $(function(){
       return this.get("published") == true;
     },
 
-    // Toggle the 'published' state of this todo item.
+    // Toggle the 'published' state of this post.
     toggle: function() {
       this.set({published: !this.get("published")});
       this.save();
@@ -191,7 +190,7 @@ $(function(){
   initialize: function() {
     // stuff to come here
   },
-
+ 
   setOrCreateOnSubmit: function (){
 
     var $title = this.$('#title'),
@@ -219,9 +218,7 @@ $(function(){
 
   });
 
-
   // create the app
-
   window.App = new AdminRouter();
   Backbone.history.start({pushState: true, root: '/admin'});
 
