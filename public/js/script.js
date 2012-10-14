@@ -45,10 +45,6 @@ $(function(){
         // });
     },
 
-    changeText: function( post_text ){
-        this.set({ text: post_text });
-    },
-
     isPublished: function(){
       return this.get("published") == true;
     },
@@ -74,8 +70,6 @@ $(function(){
     this.bind('select', this.edit, this);
   },
 
-  edit: function(foo) {
-  },
   // keep unpublished posts in sequential order
   
   nextOrder: function() {
@@ -132,12 +126,12 @@ $(function(){
     },
 
     editPost: function() {
-      this.collection.trigger('select', this.model);     
+//      this.collection.trigger('select', this.model);     
       var view = new EditPostView({
         model: this.model,
         collection: this.collection
       });
-      view.render();
+      view.render().el;
       return this;
     }
 
@@ -145,31 +139,24 @@ $(function(){
 
   window.EditPostView = PostView.extend({
   
-  el: '#edit',
+  el: '#edit-post',
 
   initialize: function() {
-              _.bindAll(this, 'render');
+               _.bindAll(this, 'render');
               this.model.bind('destroy', this.remove, this);
               this.template = _.template($('#edit-template').html());
            },
 
   render: function() {
      var renderedContent = this.template( this.model.toJSON() );
-     $('#edit-post').html(renderedContent);
+     $(this.el).html(renderedContent);
 
      return this;
-     
         }
 
   });
 
   // old posts that appear as titles on the top level ui
-  // LibraryPostView extends PostView because it will hold all posts
-
-  window.LibraryPostView = PostView.extend({
-
-
-  });
 
   // the view below handles collections of posts
 
@@ -189,7 +176,7 @@ $(function(){
       $(this.el).html(this.template({}));
       $posts = this.$('.posts');
       collection.each(function(post) {
-        var view = new LibraryPostView({
+        var view = new PostView({
           model: post,
           collection: collection
         });
@@ -210,34 +197,24 @@ $(function(){
   el: $("#admin"),
 
   events: {
-      "click #save-post":  "setOrCreateOnSubmit"
-    },
+      "click #save-post":  "createOnSubmit"
+  },
 
   initialize: function() {
     // stuff to come here
   },
  
-  setOrCreateOnSubmit: function (){
+  createOnSubmit: function (){
 
     var $title = this.$('#title'),
       $text = this.$('#text'),
-      $post_id = this.$('#post-id'),
       title = $title.val(),
       text = $text.val();
 
-    if (window.post_for_editing.hasChanged())  {   // needs logic for if post exists
-      window.post_for_editing.save({title: title, text: text});
-      $('.post-input h2').text('New Post');
-      $('.post-input h3').remove();
-    }
-
-    else {
-      library.create({title: title, text: text});
-    }
+    library.create({title: title, text: text});
 
     $title.val('');
     $text.val('');
-    $post_id.val('');
 
     library.fetch(); // I think this should be event triggered...
   }
