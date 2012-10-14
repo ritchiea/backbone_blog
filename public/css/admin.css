@@ -11,6 +11,10 @@ body {
   #admin h2 {
     font-size: 24px;
     color: #333333; }
+  #admin h3 {
+    font-size: 16px;
+    color: #333333;
+    font-style: italic; }
   #admin #text {
     width: 400px;
     height: 350px;

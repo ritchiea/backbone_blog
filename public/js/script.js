@@ -127,8 +127,15 @@ $(function(){
 
     editPost: function() {
       var title = this.model.get('title'),
-        text = this.model.get('text');
-      $('.post-input h2').text('Editing Post');
+        text = this.model.get('text'),
+        $post_input_headline = $('.post-input h2');     
+      $post_input_headline.text('Editing a Post');
+      if ($('.post-input h3').length) {
+        $('.post-input h3').text('Originally titled '+title);
+      }
+      else {
+      $('<h3>Originally titled '+title+'</h3>').insertAfter($post_input_headline);
+      }
       window.post_for_editing = this.model;
       window.$('#title').val(title);
       window.$('#text').val(text);
@@ -203,7 +210,7 @@ $(function(){
       window.post_for_editing.save({title: title, text: text});
       window.post_for_editing = undefined;
       $('.post-input h2').text('New Post');
-
+      $('.post-input h3').remove();
     }
 
     else {
