@@ -201,7 +201,7 @@ $(function(){
 
     if (window.post_for_editing != undefined)  {   // needs logic for if post exists
       window.post_for_editing.save({title: title, text: text});
-      window.post_for_editin = undefined;
+      window.post_for_editing = undefined;
     }
 
     else {
