@@ -70,6 +70,13 @@ $(function(){
   model: Post,
   url: 'admin/api/posts',
 
+  initialize: function() {
+    this.bind('select', this.edit, this);
+  },
+
+  edit: function(foo) {
+    console.log(this, this.model, foo);
+  },
   // keep unpublished posts in sequential order
   
   nextOrder: function() {
@@ -128,7 +135,8 @@ $(function(){
     editPost: function() {
       var title = this.model.get('title'),
         text = this.model.get('text'),
-        $post_input_headline = $('.post-input h2');     
+        $post_input_headline = $('.post-input h2');
+      this.collection.trigger('select', this.model);     
       $post_input_headline.text('Editing a Post');
       if ($('.post-input h3').length) {
         $('.post-input h3').text('Originally titled '+title);
@@ -206,9 +214,8 @@ $(function(){
       title = $title.val(),
       text = $text.val();
 
-    if (window.post_for_editing != undefined)  {   // needs logic for if post exists
+    if (window.post_for_editing.hasChanged())  {   // needs logic for if post exists
       window.post_for_editing.save({title: title, text: text});
-      window.post_for_editing = undefined;
       $('.post-input h2').text('New Post');
       $('.post-input h3').remove();
     }
