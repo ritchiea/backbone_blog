@@ -148,12 +148,21 @@ $(function(){
            },
 
   render: function() {
-     var renderedContent = this.template( this.model.toJSON() );
-     $(this.el).html(renderedContent);
+    var renderedContent = this.template( this.model.toJSON() );
+    $(this.el).html(renderedContent);
 
-     return this;
-        }
+    return this;
+        },
+  
+  events: {
+    'click #save-edit': 'saveEdit'
+  },
 
+  saveEdit: function() {
+    this.model.save({title: this.$('#title').val(),
+                     text: this.$('#text').val()});
+    this.remove();
+  }
   });
 
   // old posts that appear as titles on the top level ui
