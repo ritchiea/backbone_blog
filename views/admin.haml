@@ -29,8 +29,8 @@
       Editing a Post
     %h3
       Originally titled <%= title %>
-    %input#edit-title
+    <input id="title" value="<%= title %>" />
     %br/
-    %textarea#edit-text
+    <textarea id='text'><%= text %></textarea>
     %br/
     %input#save-edit{:type => 'button', :value => 'Save Edit'}

@@ -137,7 +137,7 @@ $(function(){
         model: this.model,
         collection: this.collection
       });
-      $('#edit-post').append(view.render().el);
+      view.render();
       return this;
     }
 
@@ -148,18 +148,14 @@ $(function(){
   el: '#edit',
 
   initialize: function() {
-    console.log('initialize in editpostview');
               _.bindAll(this, 'render');
               this.model.bind('destroy', this.remove, this);
               this.template = _.template($('#edit-template').html());
            },
 
   render: function() {
-     console.log('render in editpostview');
-     console.log(this.el);
      var renderedContent = this.template( this.model.toJSON() );
-     console.log(renderedContent);
-     $('#edit-post').append(renderedContent);
+     $('#edit-post').html(renderedContent);
 
      return this;
      
