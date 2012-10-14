@@ -128,7 +128,7 @@ $(function(){
     editPost: function() {
       var title = this.model.get('title'),
         text = this.model.get('text');
-      // console.dir(post);
+      $('.post-input h2').text('Editing Post');
       window.post_for_editing = this.model;
       window.$('#title').val(title);
       window.$('#text').val(text);
@@ -202,6 +202,8 @@ $(function(){
     if (window.post_for_editing != undefined)  {   // needs logic for if post exists
       window.post_for_editing.save({title: title, text: text});
       window.post_for_editing = undefined;
+      $('.post-input h2').text('New Post');
+
     }
 
     else {
