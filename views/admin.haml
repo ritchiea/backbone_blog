@@ -4,6 +4,7 @@
   %div.title
     #post-library
     %div.post-input
+      %div#edit-post
       %h2
         New Post
       %div#new-post
@@ -22,3 +23,14 @@
   %h1
     Posts
   %ul.posts
+%script#edit-template{'type' => 'text/template'}
+  #edit
+    %h2
+      Editing a Post
+    %h3
+      Originally titled <%= title %>
+    %input#edit-title
+    %br/
+    %textarea#edit-text
+    %br/
+    %input#save-edit{:type => 'button', :value => 'Save Edit'}

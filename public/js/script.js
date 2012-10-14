@@ -75,7 +75,6 @@ $(function(){
   },
 
   edit: function(foo) {
-    console.log(this, this.model, foo);
   },
   // keep unpublished posts in sequential order
   
@@ -133,24 +132,40 @@ $(function(){
     },
 
     editPost: function() {
-      var title = this.model.get('title'),
-        text = this.model.get('text'),
-        $post_input_headline = $('.post-input h2');
       this.collection.trigger('select', this.model);     
-      $post_input_headline.text('Editing a Post');
-      if ($('.post-input h3').length) {
-        $('.post-input h3').text('Originally titled '+title);
-      }
-      else {
-      $('<h3>Originally titled '+title+'</h3>').insertAfter($post_input_headline);
-      }
-      window.post_for_editing = this.model;
-      window.$('#title').val(title);
-      window.$('#text').val(text);
+      var view = new EditPostView({
+        model: this.model,
+        collection: this.collection
+      });
+      $('#edit-post').append(view.render().el);
+      return this;
     }
 
   });
 
+  window.EditPostView = PostView.extend({
+  
+  el: '#edit',
+
+  initialize: function() {
+    console.log('initialize in editpostview');
+              _.bindAll(this, 'render');
+              this.model.bind('destroy', this.remove, this);
+              this.template = _.template($('#edit-template').html());
+           },
+
+  render: function() {
+     console.log('render in editpostview');
+     console.log(this.el);
+     var renderedContent = this.template( this.model.toJSON() );
+     console.log(renderedContent);
+     $('#edit-post').append(renderedContent);
+
+     return this;
+     
+        }
+
+  });
 
   // old posts that appear as titles on the top level ui
   // LibraryPostView extends PostView because it will hold all posts
