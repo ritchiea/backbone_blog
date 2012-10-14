@@ -129,7 +129,7 @@ $(function(){
       var title = this.model.get('title'),
         text = this.model.get('text');
       // console.dir(post);
-      window.edit_post = this.model;
+      window.post_for_editing = this.model;
       window.$('#title').val(title);
       window.$('#text').val(text);
     }
@@ -199,9 +199,9 @@ $(function(){
       title = $title.val(),
       text = $text.val();
 
-    if (window.edit_post != undefined)  {   // needs logic for if post exists
-      window.edit_post.save({title: title, text: text});
-      window.edit_post = undefined;
+    if (window.post_for_editing != undefined)  {   // needs logic for if post exists
+      window.post_for_editing.save({title: title, text: text});
+      window.post_for_editin = undefined;
     }
 
     else {
