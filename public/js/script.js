@@ -127,11 +127,11 @@ $(function(){
 
     editPost: function() {
       var title = this.model.get('title'),
-        text = this.model.get('text'),
-        id = this.model.get('_id');
+        text = this.model.get('text');
+      // console.dir(post);
+      window.edit_post = this.model;
       window.$('#title').val(title);
       window.$('#text').val(text);
-      window.$('#post-id').val(id);
     }
 
   });
@@ -199,10 +199,9 @@ $(function(){
       title = $title.val(),
       text = $text.val();
 
-    if ($post_id.val().length != 0)  {   // id exists
-      var id = $post_id.val(),
-        post = library.get(id);
-      post.save({title: title, text: text});
+    if (window.edit_post != undefined)  {   // needs logic for if post exists
+      window.edit_post.save({title: title, text: text});
+      window.edit_post = undefined;
     }
 
     else {
