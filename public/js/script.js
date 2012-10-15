@@ -66,10 +66,6 @@ $(function(){
   model: Post,
   url: 'admin/api/posts',
 
-  initialize: function() {
-    this.bind('select', this.edit, this);
-  },
-
   // keep unpublished posts in sequential order
   
   nextOrder: function() {
@@ -126,22 +122,23 @@ $(function(){
     },
 
     editPost: function() {
-//      this.collection.trigger('select', this.model);     
       var view = new EditPostView({
         model: this.model,
         collection: this.collection
       });
-      view.render();
-      return this;
-    }
+      $('.post-input').prepend(view.render().el);
+}
 
   });
 
-  window.EditPostView = PostView.extend({
+  window.EditPostView = Backbone.View.extend({
   
-  el: '#edit-post',
+  tag: 'section',
+  className: 'edit-post',
 
   initialize: function() {
+              _.bindAll(this, 'render');
+              this.model.bind('change', this.render, this);
               this.model.bind('destroy', this.remove, this);
               this.template = _.template($('#edit-template').html());
            },
@@ -154,14 +151,25 @@ $(function(){
         },
   
   events: {
-    'click #save-edit': 'saveEdit'
+    'click .save-edit': 'saveEdit',
+    'click .close' : 'closeView'
   },
 
   saveEdit: function() {
-    this.model.save({title: this.$('#title').val(),
+    var edited_post = this.model;
+    edited_post.save({title: this.$('#title').val(),
                      text: this.$('#text').val()});
     this.remove();
+
+    return this;
+  },
+
+  closeView: function() {
+    this.remove();
+
+    return this;
   }
+
   });
 
   // old posts that appear as titles on the top level ui

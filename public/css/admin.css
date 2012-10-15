@@ -48,3 +48,9 @@ body {
     #admin .delete:hover {
       text-decoration: underline;
       cursor: pointer; }
+  #admin .close {
+    color: #666666;
+    font-size: 16px; }
+    #admin .close:hover {
+      color: #333333;
+      cursor: pointer; }
