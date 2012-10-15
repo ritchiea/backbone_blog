@@ -232,7 +232,7 @@ $(function(){
     $title.val('');
     $text.val('');
 
-    library.fetch(); // I think this should be event triggered...
+    library.fetch();
   }
 
   });
