@@ -138,7 +138,6 @@ $(function(){
 
   initialize: function() {
               _.bindAll(this, 'render');
-              this.model.bind('change', this.render, this);
               this.model.bind('destroy', this.remove, this);
               this.template = _.template($('#edit-template').html());
            },
