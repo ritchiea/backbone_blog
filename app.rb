@@ -34,9 +34,12 @@ delete '/admin/api/:thing/:id' do
 end
 
 put '/admin/api/:thing/:id' do
+  # {'$set' => JSON.parse(request.body.read.to_s).reject{|k,v| k == '_id'}}
   json = JSON.parse(request.body.read.to_s)
   logger.info json
-  DB.collection(params[:thing]).update({'_id' => to_bson_id(params[:id])}, json)
+  json.each do |k,v|
+    DB.collection(params[:thing]).update({'_id' => to_bson_id(params[:id])},{'$set' =>{k => v}} )
+  end
 end
 
 def to_bson_id(id) 
