@@ -23,7 +23,9 @@ get '/admin/api/:thing/:id' do
 end
 
 post '/admin/api/:thing' do
-  oid = DB.collection(params[:thing]).insert(JSON.parse(request.body.read.to_s))
+  json = JSON.parse(request.body.read.to_s)
+  logger.info json
+  oid = DB.collection(params[:thing]).insert(json)
   "{\"_id\": \"#{oid.to_s}\"}"
 end
 
@@ -32,7 +34,9 @@ delete '/admin/api/:thing/:id' do
 end
 
 put '/admin/api/:thing/:id' do
-  DB.collection(params[:thing]).update({'_id' => to_bson_id(params[:id])}, {'$set' => JSON.parse(request.body.read.to_s).reject{|k,v| k == '_id'}})
+  json = JSON.parse(request.body.read.to_s)
+  logger.info json
+  DB.collection(params[:thing]).update({'_id' => to_bson_id(params[:id])}, json)
 end
 
 def to_bson_id(id) 

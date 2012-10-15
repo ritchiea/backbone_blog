@@ -131,7 +131,7 @@ $(function(){
         model: this.model,
         collection: this.collection
       });
-      view.render().el;
+      view.render();
       return this;
     }
 
@@ -142,7 +142,6 @@ $(function(){
   el: '#edit-post',
 
   initialize: function() {
-               _.bindAll(this, 'render');
               this.model.bind('destroy', this.remove, this);
               this.template = _.template($('#edit-template').html());
            },
